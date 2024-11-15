@@ -2,17 +2,17 @@
 const http = require('http');
 const net = require('net');
 
-// Create an HTTP server to handle Cloud Run's HTTP requests
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('This is a TCP server wrapped in HTTP for Cloud Run.\n');
-});
+// // Create an HTTP server to handle Cloud Run's HTTP requests
+// const server = http.createServer((req, res) => {
+//   res.writeHead(200, { 'Content-Type': 'text/plain' });
+//   res.end('This is a TCP server wrapped in HTTP for Cloud Run.\n');
+// });
 
-// Start the HTTP server
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`HTTP server listening on port ${PORT}`);
-});
+// // Start the HTTP server
+// const PORT = process.env.PORT || 3000;
+// server.listen(PORT, () => {
+//   console.log(`HTTP server listening on port ${PORT}`);
+// });
 
 // Create a TCP server
 const tcpServer = net.createServer((socket) => {
@@ -20,7 +20,7 @@ const tcpServer = net.createServer((socket) => {
 
   socket.on('data', (data) => {
     console.log(`Received: ${data}`);
-    socket.write(`Echo: ${data}`);
+    socket.write(`From server: ${data}`);
   });
 
   socket.on('end', () => {
